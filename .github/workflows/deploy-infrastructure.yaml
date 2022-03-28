@@ -1,0 +1,40 @@
+name: Deploy Infrastructure
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Github branch'
+        default: master
+        required: true     
+      environment:
+        description: 'Target environment'
+        default: dev
+        required: true 
+      region:
+        description: 'AWS Region'
+        default: eu-west-1
+        required: true
+jobs:     
+  deploy-infrastructure-stack:
+    runs-on: ubuntu-latest 
+    steps: 
+    - name: Checkout GIT repository
+      uses: actions/checkout@v2
+      with: 
+        ref: ${{ github.event.inputs.branch }}             
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ github.event.inputs.region }}
+    - name: Install CDK
+      run: npm install -g aws-cdk@2.8.0
+    - name: Build project
+      run: |
+        npm install
+        npm run build
+        npm run test
+    - name: Deploy the Wordpress infrastructure
+      run: |
+        npx cdk deploy --require-approval never --all --context stackName=infrastructure --context environmentName=${{ github.event.inputs.environment }} --context region=${{ github.event.inputs.region }}
