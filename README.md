@@ -45,7 +45,7 @@ In this section we describe the details and goals of each stack that this archit
 
 The secret stack is created to externalize of other cloud resources the sensible information in one single stack. This is a good practice as when the architecture evolves in the future, the resources on this stack won't be change and therefore we will easier warranty the consistency among future stack changes.
 
-![Secrets Stack Resources](./images/secrets_stack.png)
+![Secrets Stack Resources](./images/stack_secrets.png)
 
 ### Network stack
 
@@ -53,24 +53,24 @@ This stack holds all the resources required to have a simple network infrastruct
 The outgoing network connectivity on the isolated subnet is done through a NAT gateway
 It is important to mention that in this architecture none of the EC2 instances receibe a public IP, as they are on the isolated subnet. 
 
-![Network Stack Resources](./images/network_stack.png)
+![Network Stack Resources](./images/stack_network.png)
 
 ### Mysql stack
 
 Create the EC2 Instance that will hold the Mysql enginge using the AMI generated on the [Packer repository](../uchicago-packer/). Besides creates the KeyPair needed to access the EC2 Instance and configures the Mysql server with the credentials existing on the secrets.
-![MySql Stack Resources](./images/mysql_stack.png)
+![MySql Stack Resources](./images/stack_mysql.png)
 
 ### EFS stack
 
 Creates the EFS FileSystem needed by wordpress to share date among their pods and the security group to handle its access
 
-![EKS Stack Resources](./images/efs_stack.png)
+![EKS Stack Resources](./images/stack_efs.png)
 
 ### Kubernetes Stack
 
 Creates the EKS Cluster, configures the kubernetes cluster by adding a storage class to be able to use EFS, and creates an autoscaling group for the worker nodes of the cluster. The autoscaling group has an automatic scaling rule configured to add more nodes, up to 6, if the CPU usage of the worker nodes exceeds 20 %.
  
-![EKS Stack Resources](./images/eks_stack.png)
+![EKS Stack Resources](./images/stack_eks.png)
 
 
 
