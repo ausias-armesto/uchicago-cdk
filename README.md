@@ -1,8 +1,8 @@
-# Infrastructure-as-code using AWS CDK Cloudformation
+# The Univerisity of Chicago - Devops Course - Infrastructure-as-code using AWS CDK Cloudformation
 
 ## Introduction
 
-This repository has been created as part of the contents for the [Devops Course](https://online.professional.uchicago.edu/course/dtb-dev/) at the [University of Chicago](https://online.professional.uchicago.edu/) as an Teacher Assistant.
+This repository has been created as part of the contents for the [Devops Course](https://online.professional.uchicago.edu/course/dtb-dev/) at the [The Univerisity of Chicago](https://online.professional.uchicago.edu/) as an Teacher Assistant.
 
 The purpose of this repository is to show an infrastructure-as-code example to build an example architecture consisting of a Wordpress application running on Kubernetes and using MySQL as the database engine ans EFS for sharing data the different wordpress pods.
 The technology used to build the infrastructure is AWS CDK Cloudformation, because it provides a handy way to handle the creation of the AWS resources programatically and not using directly the tedious DSL format of Cloudformation.
