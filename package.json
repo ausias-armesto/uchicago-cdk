@@ -12,6 +12,7 @@
     "deploy:secrets": "npx cdk deploy --require-approval never --context stackName=secrets",
     "deploy:network": "npx cdk deploy --require-approval never --context stackName=network",
     "deploy:mysql": "npx cdk deploy --require-approval never --context stackName=mysql",
+    "deploy:efs": "npx cdk deploy --require-approval never --context stackName=efs",
     "deploy:kubernetes": "npx cdk deploy --require-approval never --context stackName=kubernetes",
     "deploy:infrastructure": "npx cdk deploy --require-approval never --context stackName=infrastructure --all",
     "kubernetes:config": "$(aws cloudformation describe-stacks --stack-name wordpress-k8s-dev --output json  | jq .Stacks[0].Outputs | grep 'aws eks update-kubeconfig' | sed 's/.*\"aws/aws/' | sed 's/\"$//')",

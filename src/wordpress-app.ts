@@ -41,6 +41,9 @@ export class WordpressApp {
       case 'mysql':
         await this.createMySQLStack()
         break;
+      case 'efs':
+        new EFSStack(this.app, 'wordpress-efs-' + this.props.environmentName, this.props)
+        break;        
       case 'kubernetes':
         await this.createEKSStack()
         break;
