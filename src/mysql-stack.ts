@@ -32,7 +32,7 @@ export class MysqlStack extends Stack {
 
     this.vpc = Vpc.fromLookup(this, 'vpc', { vpcName: 'vpc-' + this.props.environmentName })
 
-    this.createLogGroup()
+    //this.createLogGroup()
     this.keyPair = this.createKeyPair()
     this.mysqlInstance = this.createEc2Instance()
     this.addDNS()
